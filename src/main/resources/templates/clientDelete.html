@@ -1,0 +1,16 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>ClientService</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body bgcolor="#85FB81">
+<h1>Delete a client</h1>
+<p>Warning! This cannot be undone!</p>
+<form action="#" th:action="@{/deleteclient}" th:object="${id}" method="post">
+    <p>Id: <input type="text" th:field="*{id}" /></p>
+    <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+</form>
+<button onclick="window.location.href = '/start';">Return to Start Page</button>
+</body>
+</html>

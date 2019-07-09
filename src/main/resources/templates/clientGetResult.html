@@ -1,0 +1,17 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>ClientService</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body bgcolor="#85FB81">
+<p>This is a client</p>
+<p th:text="'His name is : ' + ${tmp.name}" />
+<p th:text="'His surname is : ' + ${tmp.surname}" />
+<p th:text="'His second name is : ' + ${tmp.second_name}" />
+<p th:text="'His id is : ' + ${tmp.id}" />
+<p th:text="'His date of birth is : ' + ${tmp.dr.toLocaleString().substring(0,10)}" />
+<p th:text="'His account is: ' + ${tmp.account}" />
+<button onclick="window.location.href = '/start';">Return to Start Page</button>
+</body>
+</html>l>

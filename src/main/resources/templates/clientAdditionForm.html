@@ -1,0 +1,19 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>ClientService</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body bgcolor="#85FB81">
+<h1>Create a new client</h1>
+<P>Simply fill out the form beneath!</P>
+<form action="#" th:action="@{/addclient}" th:object="${tmp}" method="post">
+    <p>Surname: <input type="text" th:field="*{surname}" /></p>
+    <p>Name: <input type="text" th:field="*{name}" /></p>
+    <p>Second Name: <input type="text" th:field="*{second_name}" /></p>
+    <p>Date: <input type="date" th:field="*{bd}" /></p>
+    <p><input type="submit" value="Create!" /> <input type="reset" value="Reset" /></p>
+</form>
+<button onclick="window.location.href = '/start';">Return to Start Page</button>
+</body>
+</html>

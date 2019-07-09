@@ -1,0 +1,13 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>ClientService</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body bgcolor="#85FB81">
+<ul th:each="it : ${tmp}">
+    <li th:text="${it.id + ' ' + it.surname + ' ' + it.name + ' ' + it.second_name +  ' ' + it.dr.toLocaleString().substring(0,11)}"></li>
+</ul>
+<button onclick="window.location.href = '/start';">Return to Start Page</button>
+</body>
+</html>l>
