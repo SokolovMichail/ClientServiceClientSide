@@ -10,7 +10,7 @@
 <form action="#" th:action="@{/addclient}" th:object="${tmp}" method="post">
     <p>Surname: <input type="text" th:field="*{surname}" /></p>
     <p>Name: <input type="text" th:field="*{name}" /></p>
-    <p>Second Name: <input type="text" th:field="*{second_name}" /></p>
+    <p>Second Name: <input type="text" th:field="*{secondName}" /></p>
     <p>Date: <input type="date" th:field="*{bd}" /></p>
     <p><input type="submit" value="Create!" /> <input type="reset" value="Reset" /></p>
 </form>
