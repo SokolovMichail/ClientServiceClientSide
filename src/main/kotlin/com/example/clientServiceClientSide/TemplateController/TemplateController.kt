@@ -77,7 +77,7 @@ class ClientController {
                   val clientResourceUrl = URL_SERVICE_FIND + surname_gr.surname
                   val client = restTemplate.getForObject("$clientResourceUrl", Client::class.java)
                   model.addAttribute("tmp", client)
-                  logger.info("Client found by surname "+client?.name)
+                  logger.info("Client found by surname "+client?.surname)
                   return "clientGetResult"
               }
         catch (e:org.springframework.web.client.HttpClientErrorException)
