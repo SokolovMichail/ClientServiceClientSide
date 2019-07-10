@@ -6,7 +6,7 @@
 </head>
 <body bgcolor="#85FB81">
 <ul th:each="it : ${tmp}">
-    <li th:text="${it.id + ' ' + it.surname + ' ' + it.name + ' ' + it.secondName +  ' ' + it.dr.toLocaleString().substring(0,11)}"></li>
+    <li th:text="${it.surname + ' ' + it.name + ' ' + it.secondName +  ' ' + it.dr.toLocaleString().substring(0,11)}"></li>
 </ul>
 <button onclick="window.location.href = '/start';">Return to Start Page</button>
 </body>

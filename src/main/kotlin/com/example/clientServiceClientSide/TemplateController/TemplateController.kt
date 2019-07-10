@@ -12,10 +12,11 @@ import org.springframework.web.client.RestTemplate
 import java.text.SimpleDateFormat
 
 //A service class to implement remote deletion
-class Id_Getter(var id: String = "") {
+class SurnameGetter(var surname: String = "") {
 }
 
 const val URL_SERVICE = "http://localhost:8080/clients/"
+const val URL_SERVICE_FIND = "http://localhost:8080/clients/find/"
 private val logger = KotlinLogging.logger {}
 @Controller
 class ClientController {
@@ -30,7 +31,7 @@ class ClientController {
     fun getStartPage() ="start"
 
     @GetMapping("/getallclients")
-    fun getAllClients(model: Model, id_gr: Id_Getter): String
+    fun getAllClients(model: Model, surname_gr: SurnameGetter): String
     {
         logger.info("Attempted to list all clients")
         val restTemplate = RestTemplate()
@@ -61,27 +62,27 @@ class ClientController {
     }
 
     @GetMapping("/getclient")
-    fun showClientSearchByIdForm(model: Model): String
+    fun showClientSearchBySurnameForm(model: Model): String
     {
-        logger.info("Called a form to search client by id")
-        model.addAttribute("id", Id_Getter())
+        logger.info("Called a form to search client by surname")
+        model.addAttribute("surname", SurnameGetter())
         return "clientGetForm"
     }
 
     @PostMapping("/getclient")
-    fun clientSearchById(model: Model, id_gr: Id_Getter): String
+    fun clientSearchById(model: Model, surname_gr: SurnameGetter): String
     {
               try {
                   val restTemplate = RestTemplate()
-                  val clientResourceUrl = URL_SERVICE + id_gr.id
+                  val clientResourceUrl = URL_SERVICE_FIND + surname_gr.surname
                   val client = restTemplate.getForObject("$clientResourceUrl", Client::class.java)
                   model.addAttribute("tmp", client)
-                  logger.info("Client found by id "+client?.name)
+                  logger.info("Client found by surname "+client?.name)
                   return "clientGetResult"
               }
         catch (e:org.springframework.web.client.HttpClientErrorException)
         {
-            logger.error("Client not found by id")
+            logger.error("Client not found by surname")
             return "errorClientNotFound"
         }
     }
@@ -90,18 +91,18 @@ class ClientController {
     fun showClientDeleteByIdForm(model: Model): String
     {
         logger.info("Called a form to delete a client")
-        model.addAttribute("id", Id_Getter())
+        model.addAttribute("id", SurnameGetter())
         return "clientDelete"
     }
 
     @PostMapping("/deleteclient")
-    fun clientDeleteById(model: Model, id_gr: Id_Getter): String
+    fun clientDeleteBySurname(model: Model, surname_gr: SurnameGetter): String
     {
-        logger.info("Deleting client by id "+id_gr.id)
+        logger.info("Deleting client by surname "+surname_gr.surname)
         val restTemplate = RestTemplate()
         val clientResourceUrl = URL_SERVICE + "del"
-        val request = HttpEntity(id_gr)
-        val client = restTemplate.postForObject("$clientResourceUrl", request, Id_Getter::class.java)
+        val request = HttpEntity(surname_gr)
+        val client = restTemplate.postForObject("$clientResourceUrl", request, SurnameGetter::class.java)
         model.addAttribute("tmp", client)
         return "start"
     }
