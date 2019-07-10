@@ -1,6 +1,6 @@
-package com.example.clientServiceClientSide.TemplateController
+package com.example.clientserviceclientside.templatecontroller
 
-import com.example.clientServiceClientSide.ClientModel.Client
+import com.example.clientserviceclientside.clientmodel.Client
 import mu.KotlinLogging
 import org.springframework.http.HttpEntity
 import org.springframework.stereotype.Controller

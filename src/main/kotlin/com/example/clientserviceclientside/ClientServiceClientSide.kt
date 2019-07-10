@@ -1,4 +1,4 @@
-package com.example.clientServiceClientSide
+package com.example.clientserviceclientside
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication

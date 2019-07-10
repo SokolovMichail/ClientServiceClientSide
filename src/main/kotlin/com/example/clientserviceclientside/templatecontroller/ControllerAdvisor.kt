@@ -1,4 +1,4 @@
-package com.example.clientServiceClientSide.TemplateController
+package com.example.clientserviceclientside.templatecontroller
 
 import mu.KotlinLogging
 import org.springframework.http.HttpStatus

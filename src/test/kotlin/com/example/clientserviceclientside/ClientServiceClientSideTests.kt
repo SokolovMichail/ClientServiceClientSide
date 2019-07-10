@@ -1,4 +1,4 @@
-package com.example.clientServiceClientSide
+package com.example.clientserviceclientside
 
 import org.junit.Test
 import org.junit.runner.RunWith

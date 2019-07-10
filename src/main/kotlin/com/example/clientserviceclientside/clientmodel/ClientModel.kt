@@ -1,4 +1,4 @@
-package com.example.clientServiceClientSide.ClientModel
+package com.example.clientserviceclientside.clientmodel
 
 import java.util.*
 
