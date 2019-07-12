@@ -7,15 +7,25 @@ import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.bind.annotation.ResponseBody
 import org.springframework.web.bind.annotation.ResponseStatus
 
-internal class ClientNotFoundException(id: Int?) : RuntimeException("Could not find employee " + id!!)
+internal class ClientNotFoundException(srn: String?) : RuntimeException("Could not find employee by surname $srn")
+
+internal class ClientMismatchedFormException():RuntimeException("""Some form details
+    | might be missing or initialized with a placeholder!""".trimMargin())
 
 @ControllerAdvice
-internal class EmployeeNotFoundAdvice {
+internal class ClientNotFoundAdvice {
     private val logger = KotlinLogging.logger {}
     @ResponseBody
     @ExceptionHandler(ClientNotFoundException::class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    fun employeeNotFoundHandler(ex: ClientNotFoundException): String {
+    fun clientNotFoundHandler(ex: ClientNotFoundException): String {
+        logger.error { ex.message }
+        return ex.message.toString()
+    }
+    @ResponseBody
+    @ExceptionHandler(ClientMismatchedFormException::class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    fun clientMismatchedFormHandler(ex: ClientMismatchedFormException): String {
         logger.error { ex.message }
         return ex.message.toString()
     }
