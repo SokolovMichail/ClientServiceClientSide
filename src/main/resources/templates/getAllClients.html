@@ -5,7 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body bgcolor="#85FB81">
-<ul th:each="it : ${tmp}">
+<ul th:each="it : ${clist}">
     <li th:text="${it.surname + ' ' + it.name + ' ' + it.secondName +  ' ' + it.dr.toLocaleString().substring(0,11)}"></li>
 </ul>
 <button onclick="window.location.href = '/start';">Return to Start Page</button>

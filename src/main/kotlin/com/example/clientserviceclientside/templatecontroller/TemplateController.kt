@@ -1,6 +1,6 @@
 package com.example.clientserviceclientside.templatecontroller
 
-import com.example.clientserviceclientside.clientmodel.Client
+import com.example.clientserviceclientside.clientmodel.ClientDTO
 import mu.KotlinLogging
 import org.springframework.http.HttpEntity
 import org.springframework.stereotype.Controller
@@ -36,27 +36,27 @@ class ClientController {
         logger.info("Attempted to list all clients")
         val restTemplate = RestTemplate()
         val clientResourceUrl = URL_SERVICE + "listall"
-        val clients_list = restTemplate.getForObject("$clientResourceUrl", Array<Client>::class.java)
-        model.addAttribute("tmp", clients_list)
+        val clients_list = restTemplate.getForObject("$clientResourceUrl", Array<ClientDTO>::class.java)
+        model.addAttribute("clist", clients_list)
         return "getAllClients"
     }
 
     @GetMapping("/addclient")
     fun showClientCreationForm(model: Model): String {
         logger.info("Called a form to load a new client")
-        model.addAttribute("tmp", Client())
+        model.addAttribute("tmp", ClientDTO())
         return "clientAdditionForm"
     }
 
     @PostMapping("/addclient")
-    fun clientCreate(@ModelAttribute client: Client, model: Model): String {
+    fun clientCreate(@ModelAttribute client: ClientDTO, model: Model): String {
         logger.info("Attempt to create a new client")
         client.dr = SimpleDateFormat("yyyy-MM-dd").parse(client.bd)
         model.addAttribute("tmp", client)
         val restTemplate = RestTemplate()
         val request = HttpEntity(client)
         restTemplate.postForObject(URL_SERVICE + "add",
-                request, Client::class.java)
+                request, ClientDTO::class.java)
         logger.info("Created new client")
         return "start"
     }
@@ -75,7 +75,7 @@ class ClientController {
               try {
                   val restTemplate = RestTemplate()
                   val clientResourceUrl = URL_SERVICE_FIND + surname_gr.surname
-                  val client = restTemplate.getForObject("$clientResourceUrl", Client::class.java)
+                  val client = restTemplate.getForObject("$clientResourceUrl", ClientDTO::class.java)
                   model.addAttribute("tmp", client)
                   logger.info("Client found by surname "+client?.surname)
                   return "clientGetResult"
@@ -88,7 +88,7 @@ class ClientController {
     }
 
     @GetMapping("/deleteclient")
-    fun showClientDeleteByIdForm(model: Model): String
+    fun showClientDeleteBySurnameForm(model: Model): String
     {
         logger.info("Called a form to delete a client")
         model.addAttribute("id", SurnameGetter())
